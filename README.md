@@ -85,5 +85,6 @@ Press `Ctrl+C` to stop the timer.
 
 ## TODO
 
-- [ ] Push project to GitHub repository
+- [ ] Use standard format for cli.
+- [ ] Add a third argument to specify number or repititions, if applicable.
 - [ ] Build and submit package to npm registry
