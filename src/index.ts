@@ -1,19 +1,9 @@
-import player from "play-sound";
-import path from "path";
+import { Player } from "cli-sound";
 
-const sound = player();
+const player = new Player();
 
 function playBeep(): void {
-  try {
-    const soundPath = path.join(__dirname, "../gong.mp3");
-    sound.play(soundPath, (err: Error | null) => {
-      if (err) {
-        console.log("\x07");
-      }
-    });
-  } catch {
-    console.log("\x07");
-  }
+  player.play("gong.wav");
 }
 
 function clearLine(): void {
