@@ -6,13 +6,8 @@ function playBeep(): void {
   player.play("gong.wav");
 }
 
-function clearLine(): void {
-  process.stdout.write("\r\x1b[K");
-}
-
 function displayCountdown(seconds: number): void {
-  clearLine();
-  process.stdout.write(`Timer: ${seconds}s`);
+  process.stdout.write(`\rTimer: ${seconds}s   `);
 }
 
 function startTimer(totalSeconds: number): void {
