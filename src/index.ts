@@ -49,6 +49,7 @@ function main(): void {
     process.exit(1);
   }
 
+  console.clear();
   startTimer(seconds);
 }
 
