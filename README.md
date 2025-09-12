@@ -29,13 +29,24 @@ repeating-timer <seconds>
 ## Usage
 
 ```bash
-repeating-timer 25    # 25-second repeating timer
-repeating-timer 60    # 1-minute repeating timer
-repeating-timer 1.5   # 1.5-second repeating timer
-repeating-timer 0.5   # Half-second repeating timer
+repeating-timer <seconds> [multiplier]
 ```
 
-The timer accepts both whole numbers and decimal values for precise timing. Fractional timers (less than 1 second) update every 100ms for smooth countdown display.
+### Examples
+
+```bash
+repeating-timer 25        # 25-second repeating timer
+repeating-timer 60        # 1-minute repeating timer  
+repeating-timer 1.5       # 1.5-second repeating timer
+repeating-timer 0.5       # Half-second repeating timer
+
+# Using multiplier for easy scaling
+repeating-timer 5 12      # 60-second timer (5 × 12)
+repeating-timer 25 2      # 50-second timer (25 × 2)  
+repeating-timer 1.5 10    # 15-second timer (1.5 × 10)
+```
+
+The timer accepts both whole numbers and decimal values for precise timing. The optional multiplier argument defaults to 1 and allows for easy scaling of timer durations. Fractional timers (less than 1 second) update every 100ms for smooth countdown display.
 
 The timer will:
 1. Clear the terminal
@@ -74,8 +85,5 @@ Press `Ctrl+C` to stop the timer.
 
 ## TODO
 
-- [ ] Build and submit package to npm registry
 - [ ] Push project to GitHub repository
-- [ ] Add support for different sound files
-- [ ] Add configuration file for custom sounds
-- [ ] Add volume control options
+- [ ] Build and submit package to npm registry

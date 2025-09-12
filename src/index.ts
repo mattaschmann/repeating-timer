@@ -36,17 +36,25 @@ function startTimer(totalSeconds: number): void {
 function main(): void {
   const args = process.argv.slice(2);
 
-  if (args.length !== 1) {
-    console.error("Usage: repeating-timer <seconds>");
+  if (args.length < 1 || args.length > 2) {
+    console.error("Usage: repeating-timer <seconds> [multiplier]");
     process.exit(1);
   }
 
-  const seconds = parseFloat(args[0]);
+  const baseSeconds = parseFloat(args[0]);
+  const multiplier = args[1] ? parseFloat(args[1]) : 1;
 
-  if (isNaN(seconds) || seconds <= 0) {
+  if (isNaN(baseSeconds) || baseSeconds <= 0) {
     console.error("Error: Please provide a positive number of seconds");
     process.exit(1);
   }
+
+  if (isNaN(multiplier) || multiplier <= 0) {
+    console.error("Error: Multiplier must be a positive number");
+    process.exit(1);
+  }
+
+  const seconds = baseSeconds * multiplier;
 
   console.clear();
   startTimer(seconds);
