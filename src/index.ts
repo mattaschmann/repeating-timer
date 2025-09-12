@@ -8,22 +8,25 @@ function playBeep(): void {
 }
 
 function displayCountdown(seconds: number): void {
-  process.stdout.write(`\rTimer: ${seconds}s   `);
+  const displayValue = seconds % 1 === 0 ? seconds.toString() : seconds.toFixed(1);
+  process.stdout.write(`\rTimer: ${displayValue}s   `);
 }
 
 function startTimer(totalSeconds: number): void {
   let remainingSeconds = totalSeconds;
+  const interval = totalSeconds >= 1 ? 1000 : 100; // Use 100ms intervals for sub-second timers
+  const decrement = totalSeconds >= 1 ? 1 : 0.1;
 
   const countdown = () => {
     displayCountdown(remainingSeconds);
 
-    if (remainingSeconds === 0) {
+    if (remainingSeconds <= 0) {
       playBeep();
       remainingSeconds = totalSeconds;
       countdown();
     } else {
-      remainingSeconds--;
-      setTimeout(countdown, 1000);
+      remainingSeconds = Math.max(0, remainingSeconds - decrement);
+      setTimeout(countdown, interval);
     }
   };
 
@@ -38,7 +41,7 @@ function main(): void {
     process.exit(1);
   }
 
-  const seconds = parseInt(args[0], 10);
+  const seconds = parseFloat(args[0]);
 
   if (isNaN(seconds) || seconds <= 0) {
     console.error("Error: Please provide a positive number of seconds");
