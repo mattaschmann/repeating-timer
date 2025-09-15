@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 import { Player } from "cli-sound";
+import * as path from "path";
 
 const player = new Player();
 
 function playBeep(): void {
-  player.play("gong.wav");
+  const gongPath = path.join(__dirname, "assets", "gong.wav");
+  player.play(gongPath);
 }
 
 function displayCountdown(seconds: number): void {
